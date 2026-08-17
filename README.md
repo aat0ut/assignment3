@@ -15,8 +15,7 @@ A CRUD task API built with **FastAPI** and **PostgreSQL**, fully containerized w
 Requires [Docker](https://www.docker.com/products/docker-desktop/) (or Podman) installed and running.
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
+git clone https://github.com/aat0ut/assignment3
 cp .env.example .env
 docker compose up
 ```
@@ -68,19 +67,10 @@ content-type: application/json
 
 Tasks are stored in a `tasks` table in Postgres, created automatically on first run, and seeded with 3 example tasks only if the table is empty. The table lives in a named Docker volume (`taskdata`), so data survives `docker compose down` / `up` — it's only wiped with `docker compose down -v`.
 
-## Screenshot
-
-<!-- Paste a screenshot here showing `psql \dt` and a `SELECT * FROM tasks;` with data, or a GUI tool (DBeaver/pgAdmin/TablePlus). Example: -->
-<!-- ![Database screenshot](screenshot.png) -->
-
-## Notes / gotchas
+## Notes
 
 - The plain `postgres` image now defaults to Postgres 18, which changed its expected data directory layout and will fail to start against a volume created by an older version. This project pins `postgres:16` explicitly in both the one-off `docker run` command and `compose.yaml` to avoid that.
 - Locally (outside Docker Compose), Postgres runs on host port `5433` instead of the default `5432`, to avoid clashing with a Postgres 17 install already running on this machine via the system service. Inside the Compose network, the API reaches the database at `db:5432` — the internal port is unaffected by the host-side remap.
-
-## AI vs me
-
-<!-- Fill in after Stage 6: your prompt, what the AI got right/wrong, and what your original prompt missed. -->
 
 ## Tech stack
 
