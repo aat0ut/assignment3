@@ -20,9 +20,9 @@ db.initialize_table(conn, cur)
 data = db.retrieve_all(conn, cur)
 if len(data) == 0:
     tasks = [
-        Tasks(id=1, title='solve homework', done=False),
-        Tasks(id=2, title='get groceries', done=True),
-        Tasks(id=3, title='work out', done=False)
+        Tasks(id=1,title='solve homework', done=False),
+        Tasks(id=2,title='get groceries', done=True),
+        Tasks(id=3,title='work out', done=False)
     ]
     tasks_tuples = [(rec['id'], rec['title'], rec['done']) for rec in tasks]
     db.insert_data(conn, cur, tasks_tuples)
